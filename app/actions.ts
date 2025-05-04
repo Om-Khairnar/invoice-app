@@ -1,5 +1,5 @@
 "use server";
-import { requiredUser } from "./utils/hooks";
+import { requireUser } from "./utils/hooks";
 import { parseWithZod } from "@conform-to/zod";
 import { onboardingSchema , invoiceSchema } from "./utils/zodSchemas";
 import prisma from "./utils/db";
@@ -31,7 +31,7 @@ export async function onboardUser(prevState:any,formData: FormData) {
 };
 
 export async function createInvoice(prevState: any, formData: FormData) {
-  const session = await requiredUser();
+  const session = await requireUser();
   const submission = parseWithZod(formData, {
     schema: invoiceSchema,
   })

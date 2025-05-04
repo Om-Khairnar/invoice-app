@@ -6,9 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { InvoiceActions } from "./InvoiceActions"
 import prisma from "../utils/db";
-import { requiredUser } from "../utils/hooks";
-import { InvoiceActions } from "./invoiceActions";
+import { requireUser } from "../utils/hooks";
+import { formatCurrency } from "../utils/formatCurrency";
+import { Badge } from "@/components/ui/badge";
+import { EmptyState } from "./EmptyState";
+
 async function getData(userId: string) {
   const data = await prisma.invoice.findMany({
     where: {
@@ -30,9 +34,8 @@ async function getData(userId: string) {
 
   return data;
 }
-
-export default async function InvoiceList() {
-  const session = await requiredUser();
+export async function InvoiceList() {
+  const session = await requireUser();
   const data = await getData(session.user?.id as string);
   return (
     <>
@@ -75,7 +78,7 @@ export default async function InvoiceList() {
                   }).format(invoice.createdAt)}
                 </TableCell>
                 <TableCell className="text-right">
-                  <InvoiceActions/>
+                  <InvoiceActions status={invoice.status} id={invoice.id} />
                 </TableCell>
               </TableRow>
             ))}

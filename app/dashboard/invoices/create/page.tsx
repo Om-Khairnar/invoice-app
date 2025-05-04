@@ -1,6 +1,6 @@
 import { CreateInvoice } from "@/app/components/CreateInvoice";
 import prisma from "@/app/utils/db";
-import { requiredUser } from "@/app/utils/hooks";
+import { requireUser } from "@/app/utils/hooks";
 import { redirect } from "next/navigation";
 
 async function getUserData(userId: string) {
@@ -20,7 +20,7 @@ async function getUserData(userId: string) {
 }
 
 export default async function InvoiceCreationRoute() {
-  const session = await requiredUser();
+  const session = await requireUser();
   const data = await getUserData(session.user?.id as string);
   return (
     <CreateInvoice

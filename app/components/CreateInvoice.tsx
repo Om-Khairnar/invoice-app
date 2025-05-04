@@ -22,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { useActionState, useState } from "react";
-import { SubmitButton } from "./SubmitButtons";
+import { SubmitButton } from "./SubmitButton";
 import { createInvoice } from "../actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";

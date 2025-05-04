@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 import { PlusIcon } from "lucide-react";
 import { Suspense } from "react";
-import  { InvoiceList }  from "@/app/components/InvoiceList";
+import { InvoiceList } from "@/app/components/InvoiceList";
 import { Skeleton } from "@/components/ui/skeleton";
 import { buttonVariants } from "@/components/ui/button";
 
